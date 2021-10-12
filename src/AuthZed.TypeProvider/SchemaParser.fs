@@ -1,7 +1,7 @@
 namespace Authzed.TypeProvider
 
 
-module Schema =
+module internal Schema =
 
     type Resource =
         {
@@ -37,7 +37,7 @@ module Schema =
 
     type Comment = string
 
-module Grammer =
+module internal Grammer =
     open FParsec
     open FParsec.Pipes
     open Schema
@@ -149,7 +149,7 @@ module Grammer =
         many1 (spaces >>. fileContent .>> spaces)
 
     
-module Parser =
+module internal Parser =
     open FParsec
     open FParsec.Primitives
     open FParsec.Pipes

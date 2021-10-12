@@ -3,6 +3,14 @@ open System
 open System.Security.Cryptography
 open System.Text
 
+
+
+module private AssemblyInfo =
+    open System.Runtime.CompilerServices
+    
+    [<assembly: InternalsVisibleTo("AuthZed.TypeProvider.Tests")>]
+     do()
+
 /// <summary> Initial module </summary>
 module Say =
 
