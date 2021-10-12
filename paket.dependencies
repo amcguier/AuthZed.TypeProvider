@@ -7,6 +7,8 @@ nuget Expecto 9.0.2
 nuget YoloDev.Expecto.TestSdk 0.11.1
 nuget Microsoft.NET.Test.Sdk 16.8.0
 nuget altcover ~> 7
+nuget FParsec
+nuget FParsec-Pipes
 
 // [ FAKE GROUP ]
 group Build

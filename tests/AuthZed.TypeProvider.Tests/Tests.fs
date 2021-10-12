@@ -24,3 +24,88 @@ module SayTests =
                 }
                 let subject = Say.helloPerson person
                 Expect.equal subject "Hello Jean-Luc Picard. You were born on 2305/07/13 and your favorite number is 4. You like Red." "You didn't say hello" ]
+
+
+module ParserTests =
+    open FParsec
+
+    let parseToResult = function
+        | Success(result,_,_) -> printfn "%A" result; Result.Ok(result)
+        | Failure(error,_,_) -> Result.Error(error)
+
+    let isOk msg x = Expect.isOk x msg
+    
+    let lineComment =
+        testCase "only line comment" <| (fun _ ->
+                Authzed.TypeProvider.Parser.parse "// here's a comment"                                         
+                |> parseToResult
+                |> isOk "multiline comments should parse"                    
+                )
+
+    let blockComment =
+        testCase "one line block comment" <| (fun _ ->
+            Authzed.TypeProvider.Parser.parse "/* Here's a block comment on one line */"
+            |> parseToResult
+            |> isOk "block comments should parse"                    
+                )
+    let multilineComment =
+        testCase "multiline block comment" <| (fun _ ->
+            Authzed.TypeProvider.Parser.parse "/*  here's a long comment \n \n // embedded other comment \n \n */"
+            |> parseToResult
+            |> isOk "Multi line comment should be a comment")
+
+    let emptyResource =
+        testCase "empty resource block parses" <| fun _ ->
+            Authzed.TypeProvider.Parser.parse "definition namespace/resourcename { }"
+            |> parseToResult
+            |> isOk "basic definition should parse"
+
+
+    let fullExample =
+        """
+/** user represents a user */
+definition sysprefix/user {}
+
+/** group represents a group **/
+definition sysprefix/group {
+    /** member is a member of a group, which can be a user or the membership of another group */
+    relation member: sysprefix/user | sysprefix/group#member
+}
+
+/** document represents a document */
+definition sysprefix/document {
+    /** writer is a writer of the document */
+    relation writer: sysprefix/user | sysprefix/group#member
+
+    /** reader is a reader of the document */
+    relation reader: sysprefix/user | sysprefix/group#member
+
+    /** write indicates which user can write to the document */
+    permission write = writer
+
+    /** read indicates which user can read the document */
+    permission read = reader + write
+    
+    permission exclude1 = reader - writer
+    
+    permission intersect = reader & writer
+
+    permission arrIt = writer->member
+}
+        """
+
+    let fullParse =
+        testCase "full example should parse" <| fun _ ->
+            Authzed.TypeProvider.Parser.parse fullExample
+            |> parseToResult
+            |> isOk "full example should parse"
+        
+    [<Tests>]
+    let tests =
+        testList "parsers" [
+            lineComment
+            blockComment
+            multilineComment
+            emptyResource
+            fullParse
+        ]
