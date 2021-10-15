@@ -9,6 +9,16 @@ nuget Microsoft.NET.Test.Sdk 16.8.0
 nuget altcover ~> 7
 nuget FParsec
 nuget FParsec-Pipes
+nuget Google.Protobuf
+nuget Grpc.Net.Client
+nuget Grpc.Tools
+nuget Ply
+
+// type provider sdk
+group TPSdk
+github fsprojects/FSharp.TypeProviders.SDK:e9e7b1d9c8d104ea829925130db6030b7c685971 src/ProvidedTypes.fsi
+github fsprojects/FSharp.TypeProviders.SDK:e9e7b1d9c8d104ea829925130db6030b7c685971 src/ProvidedTypes.fs
+
 
 // [ FAKE GROUP ]
 group Build

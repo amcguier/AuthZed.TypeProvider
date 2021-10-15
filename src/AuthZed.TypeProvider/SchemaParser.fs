@@ -1,4 +1,4 @@
-namespace Authzed.TypeProvider
+namespace AuthZed.TypeProvider
 
 
 module internal Schema =
@@ -155,7 +155,10 @@ module internal Parser =
     open FParsec.Pipes
     
 
-    let parse = run Grammer.schema
+    let parse =
+        run Grammer.schema
+        >> function | Success(result,_,_) -> Result.Ok(result)
+                    | Failure(error,_,_) -> Result.Error(error)
         
 
 

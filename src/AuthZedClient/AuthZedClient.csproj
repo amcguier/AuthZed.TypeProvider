@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net5.0</TargetFrameworks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Protobuf Include="Protos/validate/validate.proto" AdditionalImportDirs="Protos" />
+    <Protobuf Include="Protos/core.proto" AdditionalImportDirs="Protos" />
+    <Protobuf Include="Protos/permission_service.proto" GrpcServices="Client" AdditionalImportDirs="Protos" />
+    <Protobuf Include="Protos/schema.proto" GrpcServices="Client" AdditionalImportDirs="Protos" />
+    <Protobuf Include="Protos/watch_service.proto" GrpcServices="Client" AdditionalImportDirs="Protos" />
+  </ItemGroup>
+  <Import Project="..\..\.paket\Paket.Restore.targets" />
+</Project>

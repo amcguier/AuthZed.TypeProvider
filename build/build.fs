@@ -50,6 +50,10 @@ let srcAndTest =
     !! srcGlob
     ++ testsGlob
 
+let excludeGlob =
+    !! testsGlob
+    ++ (__SOURCE_DIRECTORY__ </> ".." </> "src/AuthzedClient/*.??proj")
+
 let distDir = __SOURCE_DIRECTORY__ </> ".." </> "dist"
 let distGlob = distDir </> "*.nupkg"
 
@@ -414,7 +418,7 @@ let fsharpAnalyzers _ =
 
 let dotnetTest ctx =
     let excludeCoverage =
-        !! testsGlob
+        excludeGlob
         |> Seq.map IO.Path.GetFileNameWithoutExtension
         |> String.concat "|"
     let args =

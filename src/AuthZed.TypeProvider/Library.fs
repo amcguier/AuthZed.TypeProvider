@@ -5,12 +5,6 @@ open System.Text
 
 
 
-module private AssemblyInfo =
-    open System.Runtime.CompilerServices
-    
-    [<assembly: InternalsVisibleTo("AuthZed.TypeProvider.Tests")>]
-     do()
-
 /// <summary> Initial module </summary>
 module Say =
 
@@ -61,4 +55,5 @@ module Say =
     /// I do nothing
     let nothing name =
         name |> ignore
+
 

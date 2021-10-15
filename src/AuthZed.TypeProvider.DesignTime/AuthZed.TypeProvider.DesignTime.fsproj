@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net5.0;netstandard2.0</TargetFrameworks>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <WarnOn>3390;$(WarnOn)</WarnOn>
+    <OutputPath>..\..\bin\typeproviders\fsharp41\</OutputPath>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\..\paket-files\tpsdk\fsprojects\FSharp.TypeProviders.SDK\src\ProvidedTypes.fsi">
+      <Paket>True</Paket>
+      <Link>paket-files/ProvidedTypes.fsi</Link>
+    </Compile>
+    <Compile Include="..\..\paket-files\tpsdk\fsprojects\FSharp.TypeProviders.SDK\src\ProvidedTypes.fs">
+      <Paket>True</Paket>
+      <Link>paket-files/ProvidedTypes.fs</Link>
+    </Compile>
+    <Compile Include="..\AuthZed.TypeProvider\AuthZedSchemaProvider.Helpers.fs" />
+    <Compile Include="..\AuthZed.TypeProvider\SchemaParser.fs" />
+    <Compile Include="..\AuthZed.TypeProvider\GenerateTypes.fs" />
+    <Compile Include="Provider.fs" />
+    <Compile Include="Assembly.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AuthzedClient\AuthzedClient.csproj" />
+  </ItemGroup>
+  <Import Project="..\..\.paket\Paket.Restore.targets" />
+</Project>

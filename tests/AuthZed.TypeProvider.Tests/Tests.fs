@@ -29,35 +29,28 @@ module SayTests =
 module ParserTests =
     open FParsec
 
-    let parseToResult = function
-        | Success(result,_,_) -> printfn "%A" result; Result.Ok(result)
-        | Failure(error,_,_) -> Result.Error(error)
 
     let isOk msg x = Expect.isOk x msg
     
     let lineComment =
         testCase "only line comment" <| (fun _ ->
-                Authzed.TypeProvider.Parser.parse "// here's a comment"                                         
-                |> parseToResult
+                AuthZed.TypeProvider.Parser.parse "// here's a comment"                                         
                 |> isOk "multiline comments should parse"                    
                 )
 
     let blockComment =
         testCase "one line block comment" <| (fun _ ->
-            Authzed.TypeProvider.Parser.parse "/* Here's a block comment on one line */"
-            |> parseToResult
+            AuthZed.TypeProvider.Parser.parse "/* Here's a block comment on one line */"
             |> isOk "block comments should parse"                    
                 )
     let multilineComment =
         testCase "multiline block comment" <| (fun _ ->
-            Authzed.TypeProvider.Parser.parse "/*  here's a long comment \n \n // embedded other comment \n \n */"
-            |> parseToResult
+            AuthZed.TypeProvider.Parser.parse "/*  here's a long comment \n \n // embedded other comment \n \n */"
             |> isOk "Multi line comment should be a comment")
 
     let emptyResource =
         testCase "empty resource block parses" <| fun _ ->
-            Authzed.TypeProvider.Parser.parse "definition namespace/resourcename { }"
-            |> parseToResult
+            AuthZed.TypeProvider.Parser.parse "definition namespace/resourcename { }"
             |> isOk "basic definition should parse"
 
 
@@ -96,8 +89,7 @@ definition sysprefix/document {
 
     let fullParse =
         testCase "full example should parse" <| fun _ ->
-            Authzed.TypeProvider.Parser.parse fullExample
-            |> parseToResult
+            AuthZed.TypeProvider.Parser.parse fullExample
             |> isOk "full example should parse"
         
     [<Tests>]
