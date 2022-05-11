@@ -2,6 +2,10 @@ STORAGE: NONE
 NUGET
   remote: https://www.nuget.org/api/v2
     altcover (7.6.812)
+    AuthZedClient.V1 (0.0.1-alpha5)
+      Google.Api.CommonProtos (>= 2.4 < 3.0)
+      Google.Protobuf (>= 3.19 < 4.0)
+      Grpc.Net.Client (>= 2.40 < 3.0)
     Expecto (9.0.2)
       FSharp.Core (>= 4.6) - restriction: || (>= net461) (>= netstandard2.0)
       Mono.Cecil (>= 0.11.2) - restriction: || (>= net461) (>= netstandard2.0)
@@ -14,7 +18,9 @@ NUGET
       NETStandard.Library (>= 1.6.1) - restriction: && (< net45) (>= netstandard1.6)
       System.ValueTuple (>= 4.4) - restriction: || (>= net45) (>= netstandard1.6)
     FSharp.Core (5.0)
-    Google.Protobuf (3.18.1)
+    Google.Api.CommonProtos (2.4)
+      Google.Protobuf (>= 3.18 < 4.0) - restriction: || (>= net461) (>= netstandard2.0)
+    Google.Protobuf (3.19.1)
       NETStandard.Library (>= 1.6.1) - restriction: && (< net45) (>= netstandard1.1) (< netstandard2.0)
       System.Memory (>= 4.5.3) - restriction: || (>= net45) (&& (< net5.0) (>= netstandard2.0)) (&& (>= netstandard1.1) (< netstandard2.0))
       System.Runtime.CompilerServices.Unsafe (>= 4.5.2) - restriction: && (< net45) (< net5.0) (>= netstandard2.0)
@@ -26,7 +32,6 @@ NUGET
       System.Diagnostics.DiagnosticSource (>= 4.5.1) - restriction: || (&& (< net5.0) (>= netstandard2.1)) (&& (>= netstandard2.0) (< netstandard2.1))
     Grpc.Net.Common (2.40) - restriction: >= netstandard2.0
       Grpc.Core.Api (>= 2.40) - restriction: >= netstandard2.0
-    Grpc.Tools (2.41)
     Microsoft.Build.Tasks.Git (1.0) - copy_local: true
     Microsoft.CodeCoverage (16.9.4) - restriction: || (>= net45) (>= netcoreapp2.1)
     Microsoft.CSharp (4.7) - restriction: || (&& (< netstandard1.3) (>= uap10.0)) (&& (< netstandard2.0) (>= uap10.0))

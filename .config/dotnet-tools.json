@@ -14,12 +14,6 @@
         "reportgenerator"
       ]
     },
-    "paket": {
-      "version": "6.0.13",
-      "commands": [
-        "paket"
-      ]
-    },
     "fcswatch-cli": {
       "version": "0.7.14",
       "commands": [
@@ -36,6 +30,12 @@
       "version": "11.4.4",
       "commands": [
         "fsdocs"
+      ]
+    },
+    "paket": {
+      "version": "6.2.1",
+      "commands": [
+        "paket"
       ]
     }
   }

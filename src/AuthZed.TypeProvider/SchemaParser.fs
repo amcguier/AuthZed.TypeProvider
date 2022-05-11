@@ -29,7 +29,7 @@ module internal Schema =
         additionalRelations : PermissionRelation list
         }
         
-    type definition = {
+    type Definition = {
         resource : Resource
         relations : Relation list
         permissions : Permission list
@@ -138,10 +138,7 @@ module internal Grammer =
         let finish = %'}' >>. spaces
         nameParser .>>. contents .>> finish |>> fun (resource, contents) -> Definition (resource,contents)
 
-
     // schema file
-
-
     let schema =        
         let commentParser =
             comment >>= (function | Token.Comment(s) -> preturn (AST.Comment(s)) | x -> fail $"Top level may only be comments or declaration you provided {x}")
@@ -152,8 +149,7 @@ module internal Grammer =
 module internal Parser =
     open FParsec
     open FParsec.Primitives
-    open FParsec.Pipes
-    
+    open FParsec.Pipes    
 
     let parse =
         run Grammer.schema

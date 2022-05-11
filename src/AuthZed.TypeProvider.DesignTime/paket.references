@@ -1,9 +1,9 @@
-
 FSharp.Core
 Microsoft.SourceLink.GitHub
 FParsec
 FParsec-Pipes
 Ply
+AuthZedClient.V1
 
 group TPSdk
 File: ProvidedTypes.fsi
